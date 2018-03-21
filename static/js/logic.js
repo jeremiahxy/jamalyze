@@ -1,24 +1,36 @@
+// Mapbox API
 var mapbox = "https://api.mapbox.com/styles/v1/enassi/cjeojkdsr6ghf2sp346vuxyl9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZW5hc3NpIiwiYSI6ImNqZWo2YXk2bDJwbnozOW83Y3A2bTUxYmkifQ.RFMxc-rS7DhCPJvlaTQUTA";
 
+// Creating map object
 var myMap = L.map("map", {
-         center: [37.09, -95.71],
-          zoom: 5,
+  center: [40.7, -73.95],
+  zoom: 11
 });
 
-var eventDataStart = [];
-var eventDataEnd = [];
-
+// Adding tile layer to the map
 L.tileLayer(mapbox).addTo(myMap);
 
-d3.json("/maps", function (error, eventdata) {
-    if (error) return console.warn(error); 
-    console.log(eventdata);
+// Building API query URL
 
-    for (var i = 0; i < eventdata.length; i++) {
-    
-        L.marker([eventdata[i].Latitude, eventdata[i].Longitude])
-            .bindPopup("<h1>" + eventdata[i].Name + "</h1> <hr> <h3>Venue " + eventdata[i].Venue + 
-                        "</h1> <hr> <h3>Genre " + eventdata[i].Subgenre +"</h3>")
-            .addTo(myMap);
-    }
+// Assembling API query URL
+
+// Grabbing the data with d3..
+d3.json("/maps", function (response) {
+    console.log(response)
+  // Creating a new marker cluster group
+  var markers = L.markerClusterGroup();
+
+
+  // Loop through our data...
+  for (var i = 0; i < response.length; i++) {
+
+      // Add a new marker to the cluster group and bind a pop-up
+      markers.addLayer(L.marker([response[i].Latitude, response[i].Longitude])
+      .bindPopup(response[i].venue));
+    };
+
+
+  // Add our marker cluster layer to the map
+  myMap.addLayer(markers);
+
 });
