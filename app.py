@@ -51,17 +51,36 @@ def home():
 def ret_names():
     result_sample = session.query(events_db.Latitude,events_db.Longitude,events_db.Name,events_db.PriceMaximum,\
                        events_db.PriceMinimum,events_db.StartDate,events_db.Subgenre,events_db.Venue).all()
+    json_result=create_dict(result_sample)
+    #result_list=[]
+    #result_dict={}
+    #names = ["Latitude", "Longitude", "Name","PriceMaximum","PriceMinimum","StartDate","Subgenre","Venue"]
+    #for each in result_sample:
+    #    result_dict={}
+    #    for i in range(len(names)):
+     #       result_dict[names[i]]=each[i]
+      #  result_list.append(result_dict)
+    return jsonify(json_result)
 
+def create_dict(result_data):
     result_list=[]
     result_dict={}
     names = ["Latitude", "Longitude", "Name","PriceMaximum","PriceMinimum","StartDate","Subgenre","Venue"]
-    for each in result_sample:
+    for each in result_data:
         result_dict={}
         for i in range(len(names)):
             result_dict[names[i]]=each[i]
         result_list.append(result_dict)
-    return jsonify(result_list)
-    
+    return result_list
+
+
+@app.route('/maps/<criteria>/<path:value>')
+def filtered_data(criteria,value):
+    result_query= session.query(events_db.Latitude,events_db.Longitude,events_db.Name,events_db.PriceMaximum,\
+                        events_db.PriceMinimum,events_db.StartDate,events_db.Subgenre,events_db.Venue).filter(getattr(events_db,criteria)==value).all()
+    json_result=create_dict(result_query)
+    return jsonify(json_result)
+
 
 
 if __name__ == '__main__':
