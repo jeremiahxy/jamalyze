@@ -73,6 +73,20 @@ def create_dict(result_data):
         result_list.append(result_dict)
     return result_list
 
+def create_dict_analysis(result_data,flag):
+    result_list=[]
+    result_dict={}
+    if flag:
+        names = ["Genre","Name", "Gap"]
+    else:
+        names = ["Genre","Name", "PriceMaximum","StartDate","Venue"]
+    for each in result_data:
+        result_dict={}
+        for i in range(len(names)):
+            result_dict[names[i]]=each[i]
+            #print(each[1])
+        result_list.append(result_dict)
+    return result_list
 
 @app.route('/maps/<criteria>/<path:value>')
 def filtered_data(criteria,value):
@@ -81,6 +95,24 @@ def filtered_data(criteria,value):
     json_result=create_dict(result_query)
     return jsonify(json_result)
 
+@app.route('/analysis/Maximum')
+def ret_analysis_max():
+    result = session.execute("select genre,name,max(PriceMaximum),startdate,venue from Events where PriceMaximum<> 0  group by genre order by max(PriceMaximum) desc").fetchall()
+    json_result=create_dict_analysis(result,flag=False)
+    return jsonify(json_result)
+
+
+@app.route('/analysis/Minimum')
+def ret_analysis_min():
+    result = session.execute("select  genre,name,min(PriceMinimum),startdate,venue from Events where PriceMinimum<> 0 group by genre order by min(PriceMinimum)").fetchall()
+    json_result=create_dict_analysis(result,flag=False)
+    return jsonify(json_result)
+
+@app.route('/analysis/Gap')
+def ret_analysis_gap():
+    result = session.execute("SELECT distinct genre, name,Max(PriceMaximum - PriceMinimum) AS Gap FROM Events  group by name order by Gap desc").fetchall()
+    json_result=create_dict_analysis(result,flag=True)
+    return jsonify(json_result)
 
 
 if __name__ == '__main__':
