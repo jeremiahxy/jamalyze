@@ -34,37 +34,30 @@
 
   <!-- Our CSS -->
   <style>
-    /* remove default margin and padding from body */
-
-    body {
-      padding: 0;
-      margin: 0;
-    }
-
-    /* set map, body, and html to 100% of the screen size */
-
     #map,
     body,
     html {
       height: 100%;
-      margin-top: 30px;
-}
+    }
+
     .leaflet-control-container {
-display: block;
-}
-.leaflet-control-zoom {
-left: 5px;
-top: 60px;
-}
-.leaflet-control-layers {
-left: 5px;
-top: 60px;
-}
+      display: block;
+    }
 
-.leaflet-touch .leaflet-control-attribution {
-display: none;
+    .leaflet-control-zoom {
+      left: 5px;
+      top: 60px;
+    }
 
-}
+    .leaflet-control-layers {
+      left: 5px;
+      top: 60px;
+    }
+
+    .leaflet-touch .leaflet-control-attribution {
+      display: none;
+
+    }
   </style>
 
 </head>
@@ -74,6 +67,7 @@ display: none;
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mapsNav">
     <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">
         <img src="img/rockicon.png" class="icon">Jamalyze!</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
         aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -97,28 +91,28 @@ display: none;
   </nav>
 
   <!-- About Section -->
-<section id ="about">
-        <!-- The div where we will inject our map -->
-        <div id="map"></div>
-</section>
-<!-- Footer -->
-<footer>
-  <div class="container text-center">
-    <p>Copyright &copy; 2018</p>
-  </div>
-</footer>
+  <section id="about">
+    <!-- The div where we will inject our map -->
+    <div id="map"></div>
+  </section>
+  <!-- Footer -->
+  <footer>
+    <div class="container text-center">
+      <p>Copyright &copy; 2018</p>
+    </div>
+  </footer>
 
-<!-- Bootstrap core JavaScript -->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<!-- Plugin JavaScript -->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-<!-- Custom scripts for this template -->
-<script src="js/grayscale.min.js"></script>
-<script type="text/javascript" src="../static/js/heatmapmusic.js"></script>
-<script type="text/javascript" src="../static/js/logic.js"></script>
+  <!-- Custom scripts for this template -->
+  <script src="js/grayscale.min.js"></script>
+  <script type="text/javascript" src="../static/js/heatmapmusic.js"></script>
+  <script type="text/javascript" src="../static/js/logic.js"></script>
 </body>
 
 </html>
