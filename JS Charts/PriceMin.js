@@ -1,3 +1,7 @@
+// Dependencies: "http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"
+// Dependencies: "http://d3js.org/d3.v3.min.js"
+// Div class = "chart2"
+
 var margin = {top: 40, right: 20, bottom: 30, left: 40},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
@@ -12,9 +16,9 @@ var xAxis = d3.svg.axis()
     .scale(x)
     .orient("bottom");
 
-var yAxis = d3.svg.axis()
+var yAxis2 = d3.svg.axis()
     .scale(y)
-    .orient("left");
+    .orient("right");
 
 var tip2 = d3.tip()
   .attr('class', 'd3-tip')
@@ -47,10 +51,11 @@ d3.json('/analysis/Minimum', function(error, data) {
 
   svg2.append("g")
       .attr("class", "y axis")
-      .call(yAxis)
+      .attr("transform", "translate(" + width + ",0)")
+      .call(yAxis2)
     .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
+      .attr("transform", "rotate(0)")
+      .attr("y", -20)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
       .text("Price");
