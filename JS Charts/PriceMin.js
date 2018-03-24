@@ -54,8 +54,8 @@ d3.json('/analysis/Minimum', function(error, data) {
       .attr("transform", "translate(" + width + ",0)")
       .call(yAxis2)
     .append("text")
-      .attr("transform", "rotate(0)")
-      .attr("y", -20)
+      .attr("transform", "rotate(-90)")
+      .attr("y", -10)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
       .text("Price");
