@@ -1,4 +1,3 @@
-
 Plotly.d3.json('/analysis/Popular', function(error, rows){
     var states=[];
     var count=[];
@@ -89,7 +88,9 @@ Plotly.d3.json('/analysis/Popular', function(error, rows){
             landcolor: "rgb(242, 240, 247)",
             showlakes: true,
             lakecolor: "white",
-            resolution: 50
+            resolution: 50,
+            autosize: true,
+
           }
       };
 
