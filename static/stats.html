@@ -8,10 +8,12 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Grayscale - Start Bootstrap Theme</title>
+  <title>Jamalyze - Analysis</title>
 
   <!-- Plotly Dependencies -->
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -21,16 +23,16 @@
   <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
 
-  <!-- Custom styles for this template -->
-  <link href="css/grayscale.css" rel="stylesheet">
-
   <!-- d3 Dependencies -->
   <script src="http://d3js.org/d3.v3.min.js"></script>
   <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 
-  <!-- Chart CSS -->
-  <link href="css/Chart_Style.css" rel = "stylesheet">
+  <!-- Animation style -->
+  <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
 
+  <!-- Custom styles for this template -->
+  <link href="css/grayscale.css" rel="stylesheet">
+  <link href="css/Chart_Style.css" rel = "stylesheet">
 </head>
 
 <body id="page-top">
@@ -69,8 +71,7 @@
           <div class="col-lg-8 mx-auto">
 
             <h1 class="brand-heading">Analysis</h1>
-            <p class="intro-text">A free, responsive, one page Bootstrap theme.
-              <br>Created by Start Bootstrap.</p>
+            <p class="intro-text">Find out where you should see a concert in the next 12 months.</p>
             <a href="#progress" class="btn btn-circle-stats js-scroll-trigger">
               <i class="fa fa-angle-double-down animated"></i>
             </a>
@@ -85,15 +86,8 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-3">
-          <div class="progress blue">
-            <span class="progress-left">
-              <span class="progress-bar"></span>
-            </span>
-            <span class="progress-right">
-              <span class="progress-bar"></span>
-            </span>
-            <div class="progress-value">90%</div>
-          </div>
+          <div data-aos="fade-up">
+            <p>hi</p>
         </div>
 
         <div class="col-md-3">
@@ -141,12 +135,10 @@
     </div>
   </section>
 
-  <section>
+  <section class="download-section">
     <div class = "container">
-      <div class="row">
         <div class="col-lg-12">
           <div id="map">
-          </div>
         </div>
       </div>
     </div>
@@ -157,25 +149,24 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-3">
-          <h1>Insight 1</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut aliquam nunc at orci volutpat convallis quis sit amet
-            lorem. Praesent bibendum quam id sapien rutrum, id bibendum neque scelerisque. Vestibulum ullamcorper est id
-            libero gravida maximus. Donec consequat nisi velit, sit amet tristique est vulputate vitae. </p>
+          <h2>Entry Barrier</h2>
+          <p>For those who want to attend the most concerts, become a fan of Dance/Electronic music. In our sample, Dance/Electronic had the lowest average event price at $28.89, while Pop events had the highest at $54.55. However, on the other side, it was not Pop events that had the highest top end price. That distinction belongs to Rock 'n' Roll. What can you say, gotta live like a Rock Star! </p>
         </div>
 
         <div class="col-md-3">
-          <h1>Insight 1</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut aliquam nunc at orci volutpat convallis quis sit amet
-            lorem. Praesent bibendum quam id sapien rutrum, id bibendum neque scelerisque. Vestibulum ullamcorper est id
-            libero gravida maximus. Donec consequat nisi velit, sit amet tristique est vulputate vitae. </p>
+          <h2>Yanni's Delight</h2>
+          <p>Enjoy the sultry sounds of Yanni? Enough to spend $3200? Yanni's 25th Acropolis Anniversary tour came in with the most expensive ticket.  His show in Prior Lake, MN, includes a meet and greet, a premium merchandise ensemble, and a private suite. Enjoy Yanni but not at that price? Tickets only start at $40.</p>
         </div>
 
         <div class="col-md-3">
-          <h1>Insight 1</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut aliquam nunc at orci volutpat convallis quis sit amet
-            lorem. Praesent bibendum quam id sapien rutrum, id bibendum neque scelerisque. Vestibulum ullamcorper est id
-            libero gravida maximus. Donec consequat nisi velit, sit amet tristique est vulputate vitae. </p>
+          <h2>Sin City</h2>
+          <p>Nevada might not be the first state you associate with Pop culture, but the state attracts Pop music. Thanks to Las Vegas and artists having standing engagements at many venues, Sin City has more to offer than just casinos. For instance, don't miss out on Frank Marino's Divas, a live show of celebrity female impersonators!</p>
         </div>
+
+        <div class="col-md-3">
+            <h2>Country Time</h2>
+            <p>California, with it's size and year-round beautiful weather, is a hot spot for many events. The state has the most Alternative, Rock, Hip-Hop/Rap, and even Metal events across the country. But what does it lack? Tennessee's desire and love for country music. Thanks to the epicenter of Country music in Nashville, Tenneessee will host nearly 100 shows this year. And that's not counting dive bars with live music! </p>
+          </div>
 
 
       </div>
@@ -198,6 +189,8 @@
 
   <!-- Custom scripts for this template -->
   <script src="js/grayscale.min.js"></script>
+  <script type = "text/javascript" src = "../static/js/cssanimation.js"></script>
+
   
   <!-- d3 charts -->
   <script src = "../static/js/PriceMax.js"></script>
@@ -205,7 +198,6 @@
   
   <!-- Choropleth Chart -->
   <script type = "text/javascript" src = "../static/js/choro.js"></script>
-
 </body>
 
 </html>

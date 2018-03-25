@@ -141,12 +141,12 @@ a:focus, a:hover {
 .masthead-stats {
   display: table;
   width: 100%;
-  height: auto;
+  height: 100%;
   padding: 200px 0;
   text-align: center;
-  color: black;
+  color: white;
   background-color: #A5A5A5;
-  background: url("../img/analysis-header.jpeg") no-repeat center center scroll;
+  background: url("../img/apple-concert-crowd-106400.jpg") no-repeat center center scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -218,8 +218,8 @@ a:focus, a:hover {
   -webkit-transition: background 0.3s ease-in-out;
   -moz-transition: background 0.3s ease-in-out;
   transition: background 0.3s ease-in-out;
-  color: black;
-  border: 2px solid black;
+  color: white;
+  border: 2px solid white;
   border-radius: 100% !important;
   background: transparent;
 }
@@ -239,13 +239,26 @@ a:focus, a:hover {
 
 .download-section {
   color: black;
-  background: url("../img/downloads-bg.jpg") no-repeat center center scroll;
   background-color: white;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
+
+.download-section {
+  color: black;
+  background-color: white;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
 #about {
   height: 100%;
 }
@@ -306,7 +319,7 @@ img::selection {
 img::-moz-selection {
   background: transparent;
 }
-.progress{
+.progress {
   width: 150px;
   height: 150px;
   line-height: 150px;
@@ -383,7 +396,7 @@ img::-moz-selection {
 .progress.blue .progress-value{
   color: #049dff;
 }
-.progress.blue .progress-left .progress-bar{
+.progress.blue .progress-left .progress-bar .start{
   animation: loading-2 1.5s linear forwards 1.8s;
 }
 .progress.yellow .progress-bar{
@@ -392,7 +405,7 @@ img::-moz-selection {
 .progress.yellow .progress-value{
   color: #fdba04;
 }
-.progress.yellow .progress-left .progress-bar{
+.progress.yellow .progress-left .progress-bar .start{
   animation: loading-3 1s linear forwards 1.8s;
 }
 .progress.pink .progress-bar{
@@ -401,7 +414,7 @@ img::-moz-selection {
 .progress.pink .progress-value{
   color: #ed687c;
 }
-.progress.pink .progress-left .progress-bar{
+.progress.pink .progress-left .progress-bar .start{
   animation: loading-4 0.4s linear forwards 1.8s;
 }
 .progress.green .progress-bar{
@@ -469,4 +482,11 @@ img::-moz-selection {
 .icon {
   max-height: 7%;
   max-width: 7%;
+}
+.dot {
+  height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
 }

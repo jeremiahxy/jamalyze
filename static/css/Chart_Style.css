@@ -1,4 +1,4 @@
-body {
+#plots {
   font: 10px sans-serif;
 }
 
@@ -14,7 +14,7 @@ body {
 }
 
 .bar:hover {
-  fill: rgba(255, 255, 255, 0.3);
+  fill: #A5A5A5;
 }
 
 .bar2 {
@@ -22,7 +22,7 @@ body {
 }
 
 .bar2:hover {
-  fill: rgba(255, 255, 255, 0.3);
+  fill: #A5A5A5;
 }
 
 .d3-tip {
