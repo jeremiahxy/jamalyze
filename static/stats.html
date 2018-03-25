@@ -12,7 +12,6 @@
 
   <!-- Plotly Dependencies -->
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
 
 
   <!-- Bootstrap core CSS -->
@@ -28,7 +27,7 @@
   <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 
   <!-- Animation style -->
-  <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
   <!-- Custom styles for this template -->
   <link href="css/grayscale.css" rel="stylesheet">
@@ -85,31 +84,16 @@
   <section id='progress' class="content-section text-center">
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-md-3">
-          <div data-aos="fade-up">
-            <p>hi</p>
-        </div>
-
-        <div class="col-md-3">
-          <div class="progress yellow">
-            <span class="progress-left">
-              <span class="progress-bar"></span>
-            </span>
-            <span class="progress-right">
-              <span class="progress-bar"></span>
-            </span>
-            <div class="progress-value">75%</div>
+        <div class="col-md-4 mx-auto" align="center">
+            <div class="circle animated bounceInUp" >Hello I am A Circle</div>
           </div>
-        </div>
-        <div class="col-md-3">
-          <div class="progress pink">
-            <span class="progress-left">
-              <span class="progress-bar"></span>
-            </span>
-            <span class="progress-right">
-              <span class="progress-bar"></span>
-            </span>
-            <div class="progress-value">60%</div>
+
+        <div class="col-md-4 mx-auto" align="center">
+              <div class="circle animated bounceInUp" >Hello I am A Circle</div>
+          </div>
+        
+        <div class="col-md-4 mx-auto" align="center">
+              <div class="circle animated bounceInUp" >Hello I am A Circle</div>
           </div>
         </div>
 
@@ -123,11 +107,11 @@
   <section id='plots' class="download-section text-center">
     <div class="container">
       <div class="row">
-        <div class="col-lg-6 mx-auto">
+        <div class="col-lg-6">
           <p>Most Expensive Event by Genre</p>
           <div class="chart1"></div>
         </div>
-        <div class="col-lg-6 mx-auto">
+        <div class="col-lg-6">
           <p>Least Expensive Event by Genre</p>
           <div class="chart2"></div>
         </div>
@@ -189,8 +173,6 @@
 
   <!-- Custom scripts for this template -->
   <script src="js/grayscale.min.js"></script>
-  <script type = "text/javascript" src = "../static/js/cssanimation.js"></script>
-
   
   <!-- d3 charts -->
   <script src = "../static/js/PriceMax.js"></script>
