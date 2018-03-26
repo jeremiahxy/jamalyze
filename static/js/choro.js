@@ -78,7 +78,6 @@ Plotly.d3.json('/analysis/Popular', function(error, rows){
           }
       }];
 
-
       var layout = {
           title: 'Popular Genre By State',
           showlegend: true,
