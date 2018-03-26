@@ -10,7 +10,7 @@ from flask import (
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, inspect, func, desc, extract
 
 
 
@@ -76,7 +76,8 @@ def filtered_data(criteria,value):
 
 @app.route('/analysis/Maximum')
 def ret_analysis_max():
-    result = session.execute("select genre,name,max(PriceMaximum),startdate,venue from Events where PriceMaximum<> 0  group by genre order by max(PriceMaximum) desc").fetchall()
+    result=session.query(events_db.genre,events_db.Name,func.max(events_db.PriceMaximum).label("PriceMaximum"),\
+                       events_db.StartDate,events_db.Venue).distinct().filter(events_db.PriceMaximum!=0).group_by(events_db.genre).order_by(func.max(events_db.PriceMaximum).desc()).all()
     names = ["Genre","Name", "PriceMaximum","StartDate","Venue"]
     json_result=create_dict(result,names)
     return jsonify(json_result)
@@ -84,23 +85,30 @@ def ret_analysis_max():
 
 @app.route('/analysis/Minimum')
 def ret_analysis_min():
-    result = session.execute("select  genre,name,min(PriceMinimum),startdate,venue from Events where PriceMinimum<> 0 group by genre order by min(PriceMinimum)").fetchall()
+    result=session.query(events_db.genre,events_db.Name,func.max(events_db.PriceMinimum).label("PriceMinimum"),\
+                       events_db.StartDate,events_db.Venue).distinct().filter(events_db.PriceMinimum!=0).group_by(events_db.genre).order_by(func.max(events_db.PriceMinimum).desc()).all()
+    
     names = ["Genre","Name", "PriceMinimum","StartDate","Venue"]
     json_result=create_dict(result,names)
     return jsonify(json_result)
 
 @app.route('/analysis/Gap')
 def ret_analysis_gap():
-    result = session.execute("SELECT distinct genre, name,Max(PriceMaximum - PriceMinimum) AS Gap FROM Events  group by name order by Gap desc").fetchall()
+    result=session.query(events_db.genre,events_db.Name,func.max(events_db.PriceMaximum - events_db.PriceMinimum).label("Gap"),\
+                       ).distinct().group_by(events_db.Name).order_by(func.max(events_db.PriceMaximum - events_db.PriceMinimum).desc()).all()
     names = ["Genre","Name", "Gap"]
     json_result=create_dict(result,names)
     return jsonify(json_result)
 
 @app.route('/analysis/Popular')
 def ret_popular():
-    result = session.execute("SELECT statecode,genre,MAX(counts) as Popular  FROM(SELECT statecode,genre,COUNT(genre) AS counts FROM Events GROUP BY statecode,genre) group by statecode ").fetchall()
+    result = session.query(events_db.StateCode,events_db.genre,func.count(events_db.genre).label('counts')).group_by(events_db.StateCode,events_db.genre).subquery('result')
+
+    query=session.query(result.c.StateCode,result.c.genre,func.max(result.c.counts)).group_by(result.c.StateCode).all()
+
+    #result = session.execute("SELECT statecode,genre,MAX(counts) as Popular  FROM(SELECT statecode,genre,COUNT(genre) AS counts FROM Events GROUP BY statecode,genre) group by statecode ").fetchall()
     names = ["State","Genre", "Count"]
-    json_result=create_dict(result,names)
+    json_result=create_dict(query,names)
     return jsonify(json_result)
 
 
