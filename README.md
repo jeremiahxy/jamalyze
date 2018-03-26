@@ -20,7 +20,7 @@ What is the concert landscape of the United States for the next year? This appli
 
 #### Javascript
 * Leaflet
-* JQuery
+* jQuery
 * Mapbox
 * D3
 * Plotly
