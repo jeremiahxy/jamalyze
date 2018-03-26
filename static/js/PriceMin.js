@@ -2,7 +2,7 @@
 // Dependencies: "http://d3js.org/d3.v3.min.js"
 // Div class = "chart2"
 
-var margin = {top: 15, right: 40, bottom: 30, left: 40},
+var margin = {top: 15, right: 30, bottom: 30, left: 40},
     width = 600 - margin.left - margin.right,
     height = 350 - margin.top - margin.bottom;
 

@@ -10,19 +10,19 @@
 }
 
 .bar {
-  fill: black;
+  fill: #A5A5A5;
 }
 
 .bar:hover {
-  fill: #A5A5A5;
-}
-
-.bar2 {
   fill: black;
 }
 
-.bar2:hover {
+.bar2 {
   fill: #A5A5A5;
+}
+
+.bar2:hover {
+  fill: black;
 }
 
 .d3-tip {
