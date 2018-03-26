@@ -39,7 +39,7 @@ d3.json("/maps", function (error, response) {
 
     // Add a new marker to the cluster group and bind a pop-up
     markers.addLayer(L.marker([response[i].Latitude, response[i].Longitude])
-        .bindPopup(response[i].Venue))
+        .bindPopup("<strong>Concert:</strong> " + response[i].Name + "<br>" + "<strong>Venue:</strong> " + response[i].Venue + "<br>" + "<strong>Date:</strong> " + response[i].StartDate))
       .addTo(clusters);
   };
 
