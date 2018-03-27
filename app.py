@@ -76,8 +76,7 @@ def filtered_data(criteria,value):
 
 @app.route('/analysis/Maximum')
 def ret_analysis_max():
-    result=session.query(events_db.genre,events_db.Name,func.max(events_db.PriceMaximum).label("PriceMaximum"),\
-                       events_db.StartDate,events_db.Venue).distinct().filter(events_db.PriceMaximum!=0).group_by(events_db.genre).order_by(func.max(events_db.PriceMaximum).desc()).all()
+    result = session.execute("select genre,name,max(PriceMaximum) , startdate,venue from Events where PriceMaximum<> 0  group by genre order by max(PriceMaximum) desc").fetchall()
     names = ["Genre","Name", "PriceMaximum","StartDate","Venue"]
     json_result=create_dict(result,names)
     return jsonify(json_result)
@@ -85,9 +84,7 @@ def ret_analysis_max():
 
 @app.route('/analysis/Minimum')
 def ret_analysis_min():
-    result=session.query(events_db.genre,events_db.Name,func.max(events_db.PriceMinimum).label("PriceMinimum"),\
-                       events_db.StartDate,events_db.Venue).distinct().filter(events_db.PriceMinimum!=0).group_by(events_db.genre).order_by(func.max(events_db.PriceMinimum).desc()).all()
-    
+    result = session.execute("select genre,name,min(PriceMinimum) , startdate,venue from Events where PriceMinimum<> 0  group by genre order by min(PriceMinimum) desc").fetchall()
     names = ["Genre","Name", "PriceMinimum","StartDate","Venue"]
     json_result=create_dict(result,names)
     return jsonify(json_result)
