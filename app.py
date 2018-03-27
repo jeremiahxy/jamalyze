@@ -105,7 +105,7 @@ def ret_popular():
     #result = session.query(events_db.StateCode,events_db.genre,func.count(events_db.genre).label('counts')).filter(events_db.StateCode.isnot(None)).group_by(events_db.StateCode,events_db.genre).subquery('result')
 
    # query=session.query(result.c.StateCode,result.c.genre,func.max(result.c.counts)).group_by(result.c.StateCode).all()
-    result = session.execute("SELECT EVENTS.statecode, CNTGENRE.genre,MAX(CNTGENRE.CNT) AS POPULAR  FROM events INNER JOIN(SELECT statecode,genre,count(genre) AS CNT FROM Events GROUP BY statecode,genre) as CNTGENRE ON events.statecode=CNTGENRE.statecode AND EVENTS.GENRE=CNTGENRE.GENRE group by EVENTS.statecode").fetchall()
+    result = session.execute("Select distinct t1.statecode,t1.genre,t1.cnt AS POPULAR from(SELECT statecode,genre,count(id) as cnt FROM Events GROUP BY statecode,genre) AS T1 left outer join (SELECT statecode,genre,count(id) as cnt FROM Events GROUP BY statecode,genre) AS T2 on t2.cnt>t1.cnt and t1.statecode=t2.statecode and t2.cnt is not null where t2.cnt is null").fetchall()
     #result = session.execute("SELECT ASI.statecode, ASI.genre, ASI.COUNTS AS POPULAR  FROM(SELECT statecode,genre,COUNT(genre) AS counts FROM Events GROUP BY statecode,genre) ASI group by statecode having max(counts)").fetchall()
     names = ["State","Genre", "Count"]
     json_result=create_dict(result,names)
