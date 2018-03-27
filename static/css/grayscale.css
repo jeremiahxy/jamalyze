@@ -61,13 +61,17 @@ a {
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
-  color: #42DCA3;
+  color: black;
 }
 
 a:focus,
 a:hover {
   text-decoration: none;
-  color: #1d9b6c;
+  color: #A5A5A5;
+}
+
+footer {
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 #mainNav {
