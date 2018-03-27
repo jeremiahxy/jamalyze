@@ -76,8 +76,7 @@ def filtered_data(criteria,value):
 
 @app.route('/analysis/Maximum')
 def ret_analysis_max():
-    result=session.query(events_db.genre,events_db.Name,func.max(events_db.PriceMaximum).label("PriceMaximum"),\
-                       events_db.StartDate,events_db.Venue).distinct().filter(events_db.PriceMaximum!=0).group_by(events_db.genre).order_by(func.max(events_db.PriceMaximum).desc()).all()
+    result = session.execute("select genre,name,PriceMaximum, startdate,venue from Events where id in(Select id from Events where PriceMaximum<> 0  group by genre order by max(PriceMaximum) desc) order by PriceMaximum desc").fetchall()
     names = ["Genre","Name", "PriceMaximum","StartDate","Venue"]
     json_result=create_dict(result,names)
     return jsonify(json_result)
@@ -85,9 +84,7 @@ def ret_analysis_max():
 
 @app.route('/analysis/Minimum')
 def ret_analysis_min():
-    result=session.query(events_db.genre,events_db.Name,func.max(events_db.PriceMinimum).label("PriceMinimum"),\
-                       events_db.StartDate,events_db.Venue).distinct().filter(events_db.PriceMinimum!=0).group_by(events_db.genre).order_by(func.max(events_db.PriceMinimum).desc()).all()
-    
+    result = session.execute("select genre,name,min(PriceMinimum) , startdate,venue from Events where PriceMinimum<> 0  group by genre,name order by min(PriceMinimum) desc").fetchall()
     names = ["Genre","Name", "PriceMinimum","StartDate","Venue"]
     json_result=create_dict(result,names)
     return jsonify(json_result)
@@ -102,13 +99,13 @@ def ret_analysis_gap():
 
 @app.route('/analysis/Popular')
 def ret_popular():
-    result = session.query(events_db.StateCode,events_db.genre,func.count(events_db.genre).label('counts')).group_by(events_db.StateCode,events_db.genre).subquery('result')
+    #result = session.query(events_db.StateCode,events_db.genre,func.count(events_db.genre).label('counts')).filter(events_db.StateCode.isnot(None)).group_by(events_db.StateCode,events_db.genre).subquery('result')
 
-    query=session.query(result.c.StateCode,result.c.genre,func.max(result.c.counts)).group_by(result.c.StateCode).all()
-
-    #result = session.execute("SELECT statecode,genre,MAX(counts) as Popular  FROM(SELECT statecode,genre,COUNT(genre) AS counts FROM Events GROUP BY statecode,genre) group by statecode ").fetchall()
+   # query=session.query(result.c.StateCode,result.c.genre,func.max(result.c.counts)).group_by(result.c.StateCode).all()
+    result = session.execute("Select distinct t1.statecode,t1.genre,t1.cnt AS POPULAR from(SELECT statecode,genre,count(id) as cnt FROM Events GROUP BY statecode,genre) AS T1 left outer join (SELECT statecode,genre,count(id) as cnt FROM Events GROUP BY statecode,genre) AS T2 on t2.cnt>t1.cnt and t1.statecode=t2.statecode and t2.cnt is not null where t2.cnt is null").fetchall()
+    #result = session.execute("SELECT ASI.statecode, ASI.genre, ASI.COUNTS AS POPULAR  FROM(SELECT statecode,genre,COUNT(genre) AS counts FROM Events GROUP BY statecode,genre) ASI group by statecode having max(counts)").fetchall()
     names = ["State","Genre", "Count"]
-    json_result=create_dict(query,names)
+    json_result=create_dict(result,names)
     return jsonify(json_result)
 
 
