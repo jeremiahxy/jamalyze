@@ -102,13 +102,13 @@ def ret_analysis_gap():
 
 @app.route('/analysis/Popular')
 def ret_popular():
-    result = session.query(events_db.StateCode,events_db.genre,func.count(events_db.genre).label('counts')).filter(events_db.StateCode.isnot(None)).group_by(events_db.StateCode,events_db.genre).subquery('result')
+    #result = session.query(events_db.StateCode,events_db.genre,func.count(events_db.genre).label('counts')).filter(events_db.StateCode.isnot(None)).group_by(events_db.StateCode,events_db.genre).subquery('result')
 
-    query=session.query(result.c.StateCode,result.c.genre,func.max(result.c.counts)).group_by(result.c.StateCode).all()
+   # query=session.query(result.c.StateCode,result.c.genre,func.max(result.c.counts)).group_by(result.c.StateCode).all()
 
-    #result = session.execute("SELECT statecode,genre,MAX(counts) as Popular  FROM(SELECT statecode,genre,COUNT(genre) AS counts FROM Events GROUP BY statecode,genre) group by statecode ").fetchall()
+    result = session.execute("SELECT ASI.statecode, ASI.genre, ASI.COUNTS AS POPULAR  FROM(SELECT statecode,genre,COUNT(genre) AS counts FROM Events GROUP BY statecode,genre) ASI group by statecode having max(counts)").fetchall()
     names = ["State","Genre", "Count"]
-    json_result=create_dict(query,names)
+    json_result=create_dict(result,names)
     return jsonify(json_result)
 
 
