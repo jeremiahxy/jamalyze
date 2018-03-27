@@ -76,7 +76,7 @@ def filtered_data(criteria,value):
 
 @app.route('/analysis/Maximum')
 def ret_analysis_max():
-    result = session.execute("select genre,name,PriceMaximum, startdate,venue from Events where id in(Select id from Events where PriceMaximum<> 0  group by genre order by max(PriceMaximum) desc) order by PriceMaximum desc").fetchall()
+    result = session.execute("select genre,name,max(PriceMaximum) , startdate,venue from Events where PriceMaximum<> 0  group by genre order by max(PriceMaximum) desc").fetchall()
     names = ["Genre","Name", "PriceMaximum","StartDate","Venue"]
     json_result=create_dict(result,names)
     return jsonify(json_result)
@@ -84,7 +84,7 @@ def ret_analysis_max():
 
 @app.route('/analysis/Minimum')
 def ret_analysis_min():
-    result = session.execute("select genre,name,min(PriceMinimum) , startdate,venue from Events where PriceMinimum<> 0  group by genre,name order by min(PriceMinimum) desc").fetchall()
+    result = session.execute("select genre,name,min(PriceMinimum) , startdate,venue from Events where PriceMinimum<> 0  group by genre order by min(PriceMinimum) desc").fetchall()
     names = ["Genre","Name", "PriceMinimum","StartDate","Venue"]
     json_result=create_dict(result,names)
     return jsonify(json_result)
