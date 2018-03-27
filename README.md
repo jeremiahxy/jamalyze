@@ -1,6 +1,6 @@
 # Jamalyze!
 
-What is the concert landscape of the United States for the next year? This application explores concert trends across the nation in regards to genre, price, and location. [View the application.](https://www.jamalyze.herokuapp.com)
+What is the concert landscape of the United States for the next year? This application explores concert trends across the nation in regards to genre, price, and location. [View the application.](https://jamalyze.herokuapp.com/)
 
 
  ### Configuration
