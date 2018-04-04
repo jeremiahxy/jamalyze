@@ -31,3 +31,6 @@ What is the concert landscape of the United States for the next year? This appli
 * [Emily Nassi](https://github.com/emilynassi)
 * [David O'Morrissey](https://github.com/davidomo)
 * [Sujata Vithala](https://github.com/suvithala)
+
+
+RUN ... `mongoimport -h *URI* -d *dbname* -c *classname* -u *user* -p *pass* --file EventsDB.json`
