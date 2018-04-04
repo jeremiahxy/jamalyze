@@ -23,7 +23,7 @@ client = MongoClient(os.environ['MONGOLAB_URI'],
 db = client.get_default_database()
 
 print("=============================")
-print db.collection_names()
+print(db.collection_names())
 print("=============================")
 
 
