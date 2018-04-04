@@ -15,7 +15,7 @@ from sqlalchemy import create_engine, inspect, func, desc, extract
 import pymongo
 from pymongo import MongoClient
 
-client = MongoClient(os.environ['MONGOLAB_URI'],
+client = MongoClient(os.environ.get('MONGO_URL'),
                      connectTimeoutMS=30000,
                      socketTimeoutMS=None,
                      socketKeepAlive=True)
