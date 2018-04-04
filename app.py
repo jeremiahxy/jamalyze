@@ -122,7 +122,7 @@ def ret_popular():
 
 @app.route('/scrape')
 def scrape():
-    surfing = mongo.db.surfing1
+    surfing = db.surfing
     data = scrape_surfing.scrape()
     surfing.update(
         {},
