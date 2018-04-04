@@ -20,7 +20,7 @@ client = MongoClient(os.environ.get('MONGO_URL'),
                      socketTimeoutMS=None,
                      socketKeepAlive=True)
 
-db = client.get_default_database()
+db = client.heroku_v1lznjfb
 
 print("=============================")
 print(db.collection_names())
