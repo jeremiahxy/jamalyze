@@ -20,11 +20,7 @@ client = MongoClient(os.environ.get('MONGO_URL'),
                      socketTimeoutMS=None,
                      socketKeepAlive=True)
 
-db = client.heroku_v1lznjfb
-
-print("=============================")
-print(db.collection_names())
-print("=============================")
+db = client.get_database()
 
 
 #################################################
@@ -120,16 +116,16 @@ def ret_popular():
     json_result=create_dict(result,names)
     return jsonify(json_result)
 
-@app.route('/scrape')
-def scrape():
-    surfing = db.surfing
-    data = scrape_surfing.scrape()
-    surfing.update(
-        {},
-        data,
-        upsert=True
-    )
-    return redirect("https://jamalyze-son.herokuapp.com/static/stats.html", code=302)
+# @app.route('/scrape')
+# def scrape():
+#     surfing = db.surfing
+#     data = scrape_surfing.scrape()
+#     surfing.update(
+#         {},
+#         data,
+#         upsert=True
+#     )
+#     return redirect("https://jamalyze-son.herokuapp.com/static/stats.html", code=302)
 
 if __name__ == '__main__':
     app.run(debug=True)
