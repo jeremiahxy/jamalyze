@@ -12,7 +12,19 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, inspect, func, desc, extract
 
+import pymongo
+from pymongo import MongoClient
 
+client = MongoClient(os.environ['MONGOLAB_URI'],
+                     connectTimeoutMS=30000,
+                     socketTimeoutMS=None,
+                     socketKeepAlive=True)
+
+db = client.get_default_database()
+
+print("=============================")
+print db.collection_names()
+print("=============================")
 
 
 #################################################
@@ -108,6 +120,16 @@ def ret_popular():
     json_result=create_dict(result,names)
     return jsonify(json_result)
 
+@app.route('/scrape')
+def scrape():
+    surfing = mongo.db.surfing1
+    data = scrape_surfing.scrape()
+    surfing.update(
+        {},
+        data,
+        upsert=True
+    )
+    return redirect("https://jamalyze-son.herokuapp.com/static/stats.html", code=302)
 
 if __name__ == '__main__':
     app.run(debug=True)
